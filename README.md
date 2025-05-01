@@ -1,139 +1,66 @@
-# 🍔 Yew Navbar
+<div align="center">
 
-[![Crates.io](https://img.shields.io/crates/v/yew-navbar)](https://crates.io/crates/yew-navbar)
-[![Crates.io Downloads](https://img.shields.io/crates/d/yew-navbar)](https://crates.io/crates/yew-navbar)
-![Crates.io License](https://img.shields.io/crates/l/yew-navbar)
-![Rust](https://img.shields.io/badge/rust-stable-orange)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e8246c00-9789-4483-bcd4-b500eefa6f6a/deploy-status)](https://yew-navbar.netlify.app)
+# 🍔 Navbar
 
----
+[![Crates.io](https://img.shields.io/crates/v/navbar)](https://crates.io/crates/navbar)
+[![Crates.io Downloads](https://img.shields.io/crates/d/navbar)](https://crates.io/crates/navbar)
+![Crates.io License](https://img.shields.io/crates/l/navbar)
+[![made-with-rust](https://img.shields.io/badge/Made%20with-Rust-1f425f.svg?logo=rust&logoColor=white)](https://www.rust-lang.org/)
+[![Rust](https://img.shields.io/badge/Rust-1.85%2B-blue.svg)](https://www.rust-lang.org)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/wiseaidev)
 
-[![Demo](https://github.com/wiseaidev/yew-navbar/assets/62179149/3e322002-844f-4abd-b4da-ba985ab127cb)](https://yew-navbar.netlify.app)
+[![Join our Discord](https://dcbadge.limes.pink/api/server/b5JbvHW5nv)](https://discord.gg/b5JbvHW5nv)
 
----
+<!-- absolute url for docs.rs cause assets is excluded from crate -->
+![logo](https://raw.githubusercontent.com/opensass/navbar/refs/heads/main/assets/logo.webp)
 
-## 📜 Introduction
+</div>
 
-Yew Navbar is a highly customizable and responsive navbar component for the Yew framework. It provides a feature-rich navigation bar that can be easily integrated into your Yew applications.
+## 🎬 Demo
 
-## 🤔 Why is this Component Useful?
+| Framework | Live Demo |
+| --- | --- |
+| Yew | [![Netlify Status](https://api.netlify.com/api/v1/badges/a0efc7e9-f20e-4dd9-93e1-c8f4fde7506f/deploy-status)](https://navbar-rs.netlify.app) |
+| Dioxus | TODO |
+| Leptos | TODO |
 
-This navbar component offers several benefits to enhance your web application's navigation experience:
+## 📜 Intro
 
-1. 🌐 Customization: Tailor the appearance and behavior of the navbar to suit your application's design.
+**Navbar** is a fully customizable, responsive **navigation bar component** for WASM frameworks like **Yew**, **Dioxus**, and **Leptos**. Designed for scalability and flexibility, it supports standard, dropdown, and mega menus, with full styling and ARIA-aware accessibility support.
 
-1. 🚀 Responsive Design: Ensures optimal viewing and navigation across various devices and screen sizes.
+## 🤔 Why Use Navbar?
 
-1. 💬 Easy Integration: Seamless integration into Yew projects with minimal setup and configuration.
+The following features make Navbar a must-have for modern WASM apps:
 
-## ⚙️ Installation
+1. **🔗 Main, Dropdown, & Mega Menus**: Clean struct-based APIs for structured nav items.
+1. **🎨 Customizable Styling**: Inline styles or class overrides for every element.
+1. **🔍 Search & CTA Support**: Optional search input, profile avatar, and CTA button.
+1. **📱 Mobile Friendly**: Responsive layout with hamburger toggle.
+1. **🧑‍🎨 Profile Menu**: Easily integrate a dropdown for user profile actions.
 
-Integrating Yew Navbar into your Yew project is a straightforward process. Follow these steps:
+## Yew Usage
 
-1. Make sure you have Yew set up in your project. If not, refer to the [Yew documentation](https://yew.rs/docs/getting-started/introduction) for installation instructions.
+<!-- absolute url for docs.rs cause YEW.md is not included in crate -->
+Refer to [our guide](https://github.com/opensass/navbar/blob/main/YEW.md) to integrate this component into your Yew app.
 
-1. Install the library using your preferred package manager:
+## 🧬 Dioxus Usage (TODO)
 
-   ```bash
-   $ cargo add yew-navbar
-   ```
+<!-- absolute url for docs.rs cause DIOXUS.md is not included in crate -->
+Refer to [our guide](https://github.com/opensass/navbar/blob/main/DIOXUS.md) to integrate this component into your Dioxus app.
 
-1. Start using the navbar component to enhance your application's navigation.
+## 🌱 Leptos Usage (TODO)
 
-## 🛠️ Usage
+<!-- absolute url for docs.rs cause LEPTOS.md is not included in crate -->
+Refer to [our guide](https://github.com/opensass/navbar/blob/main/LEPTOS.md) to integrate this component into your Leptos app.
 
-Incorporating Yew Navbar into your application is easy. Follow these steps:
+## 🤝 Contributions
 
-1. Import the navbar component into your Yew project:
+Contributions are welcome! Whether it's bug fixes, feature requests, or examples, we would love your help to make Navbar better.
 
-   ```rust
-   use yew::prelude::*;
-   use yew_navbar::{Navbar, NavbarProps, Menu};
-
-   #[function_component(App)]
-   pub fn app() -> Html {
-       // tailwind css utility classes
-       let navbar_props = NavbarProps {
-           navbar_class: "top-48 left-0 w-full bg-blue-500 text-white font-roboto z-20",
-           dropdown_class: "absolute top-full left-0 mt-2 bg-black text-white p-4 rounded shadow-lg border border-blue-500 grid grid-cols-4 gap-4 block md:hidden",
-           dropdown_item_class: "border-b border-blue-500 col-span-1",
-           menus: vec![
-               Menu {
-                   id: 1,
-                   link: "#",
-                   name: "Home",
-               },
-               Menu {
-                   id: 2,
-                   link: "#about",
-                   name: "About",
-               },
-               Menu {
-                   id: 3,
-                   link: "#services",
-                   name: "Services",
-               },
-           ],
-           button_text: "Hello",
-           logo_img_class: "w-32 md:w-40",
-           ..NavbarProps::default()
-       };
-
-       html! {
-           <Navbar ..navbar_props />
-       }
-   }
-   ```
-
-1. Customize the navbar appearance and behavior using provided props.
-
-1. Enjoy an enhanced navigation experience with Yew Navbar.
-
-## 🔧 Props
-
-### Main Props
-
-| Name          | Type             | Description                           | Example                   | Default Value   |
-| ------------- | ---------------- | ------------------------------------- | ------------------------- | --------------- |
-| `menus`       | `Vec<Menu>`      | List of navigation menu items.         | -                         | `Vec::new()`    |
-| `button_href` | `&'static str`   | Href for the button link.             | `"wiseai.dev"`           | `""`            |
-| `button_text` | `&'static str`   | Text for the button.                  | `"Click me"`              | `""`            |
-
-### Styling Props
-
-| Name                  | Type             | Description                           | Example                   | Default Value   |
-| --------------------- | ---------------- | ------------------------------------- | ------------------------- | --------------- |
-| `navbar_class`        | `&'static str`   | CSS class for the navbar section.     | `"navbar"`                | `""`            |
-| `logo_class`          | `&'static str`   | CSS class for the logo section.       | `"logo"`                  | `""`            |
-| `menu_toggle_class`   | `&'static str`   | CSS class for the menu toggle button. | `"menu-toggle"`           | `""`            |
-| `line_class`          | `&'static str`   | CSS class for lines in the button.    | `"line"`                  | `""`            |
-| `flex_container_class`| `&'static str`   | CSS class for the flex container.     | `"flex-container"`        | `""`            |
-| `hidden_md_class`     | `&'static str`   | CSS class for hiding elements on small screens. | `"hidden-md"`    | `""`            |
-| `nav_class`           | `&'static str`   | CSS class for the navigation section. | `"nav"`                   | `""`            |
-| `menu_item_class`     | `&'static str`   | CSS class for navigation menu items.  | `"menu-item"`             | `""`            |
-| `button_class`        | `&'static str`   | CSS class for the button.             | `"button"`                | `""`            |
-| `button_link_class`   | `&'static str`   | CSS class for the button link.        | `"button-link"`           | `""`            |
-| `dropdown_item_class` | `&'static str`   | CSS class for dropdown menu items.    | `"dropdown-item"`         | `""`            |
-| `dropdown_class`      | `&'static str`   | CSS class for the dropdown menu.      | `"dropdown"`              | `""`            |
-| `search_input_class`  | `&'static str`   | CSS class for the search input.       | `"search-input"`          | `""`            |
-
-### Logo Props
-
-| Name           | Type             | Description                           | Example                   | Default Value   |
-| -------------- | ---------------- | ------------------------------------- | ------------------------- | --------------- |
-| `logo_src`     | `&'static str`   | Source path for the logo image.       | `"images/logo.png"`       | `""`            |
-| `logo_alt`     | `&'static str`   | Alt text for the logo image.          | `"Logo Alt Text"`         | `""`            |
-| `logo_img_class`| `&'static str`   | CSS class for the logo image.         | `"logo-img"`              | `""`            |
-| `logo_link`    | `&'static str`   | Href for the logo link.               | `"/home"`                 | `""`            |
-
-## 📙 Examples
-
-If you're curious about how to use it with different styling or additional features, you can check out the [examples folder](examples/tailwind) for more information.
-
-## 🤝 Contribution
-
-We welcome contributions from the community to enhance this Yew Navbar component. Feel free to open issues, submit pull requests, or provide feedback. Let's collaborate to make navigation in Yew even more stylish and functional!
+1. Fork the repository.
+1. Create a new branch for your feature/bugfix.
+1. Submit a pull request for review.
 
 ## 📜 License
 
-Yew Navbar is licensed under the `MIT` License, allowing you to use, modify, and distribute it freely. Refer to the [`LICENSE`](LICENSE) file for more details.
+Navbar is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this library in your projects.
