@@ -1,27 +1,47 @@
 [package]
-name = "yew-navbar"
-version = "0.1.1"
-description = "🍔 A highly customizable and responsive navbar component for the Yew framework."
+name = "navbar"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.85"
+description = "🍔 A highly customizable navbar component for WASM frameworks like Yew, Dioxus, and Leptos."
 license = "MIT"
-repository = "https://github.com/wiseaidev/yew-navbar"
-homepage = "https://github.com/wiseaidev/yew-navbar"
-documentation = "https://docs.rs/yew-navbar/"
+keywords = ["navbar", "yew", "rust", "dioxus", "leptos"]
+categories = ["web-programming", "science"]
+repository = "https://github.com/opensass/navbar"
+documentation = "https://docs.rs/navbar"
 authors = ["Mahmoud Harmouch <oss@wiseai.dev>"]
-edition = "2021"
-exclude = ["/examples"]
-keywords = ["yew", "rust", "navbar", "yew-navbar"]
-categories = ["web-programming", "no-std"]
+exclude = ["/assets", "/examples"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-yew = "0.21.0"
+yew = { version = "0.21.0", default-features = false, optional = true }
+dioxus = { version = "0.6.3", optional = true }
+leptos = { version = "0.7.7", optional = true }
+web-sys = { version = "0.3.77", features = ["Window", "Element"] }
+gloo = "0.11.0"
+
+[features]
+yew = ["dep:yew"]
+dio = ["dioxus"]
+lep = ["leptos"]
 
 [profile.release]
-codegen-units = 1
 opt-level = "z"
+debug = false
 lto = "thin"
+codegen-units = 1
+panic = "abort"
 strip = "symbols"
+incremental = false
 
 [badges]
 maintenance = { status = "actively-developed" }
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[dev-dependencies]
+log = "0.4.27"
+bump2version = "0.1.6"
