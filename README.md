@@ -21,7 +21,7 @@
 | Framework | Live Demo |
 | --- | --- |
 | Yew | [![Netlify Status](https://api.netlify.com/api/v1/badges/a0efc7e9-f20e-4dd9-93e1-c8f4fde7506f/deploy-status)](https://navbar-rs.netlify.app) |
-| Dioxus | TODO |
+| Dioxus | [![Netlify Status](https://api.netlify.com/api/v1/badges/a0efc7e9-f20e-4dd9-93e1-c8f4fde7506f/deploy-status)](https://navbar-dio.netlify.app) |
 | Leptos | TODO |
 
 ## 📜 Intro
@@ -43,7 +43,7 @@ The following features make Navbar a must-have for modern WASM apps:
 <!-- absolute url for docs.rs cause YEW.md is not included in crate -->
 Refer to [our guide](https://github.com/opensass/navbar/blob/main/YEW.md) to integrate this component into your Yew app.
 
-## 🧬 Dioxus Usage (TODO)
+## 🧬 Dioxus Usage
 
 <!-- absolute url for docs.rs cause DIOXUS.md is not included in crate -->
 Refer to [our guide](https://github.com/opensass/navbar/blob/main/DIOXUS.md) to integrate this component into your Dioxus app.
