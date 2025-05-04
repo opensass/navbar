@@ -308,6 +308,110 @@ pub struct NavbarProps {
     pub more_button_class: &'static str,
 }
 
+/// Navbar Component
+///
+/// A responsive and interactive navigation bar component built using Yew. It adapts to screen size
+/// changes and supports features such as a mobile toggle menu, dropdowns, mega menu, search input,
+/// and profile menu. The component is highly configurable through styles and class properties.
+///
+/// # Features
+///
+/// - **Responsive Design**:
+///   - Automatically switches to mobile view if `window.innerWidth() <= 768`.
+///   - A `resize` event listener dynamically updates the layout state.
+///
+/// - **Mobile Menu Toggle**:
+///   - A hamburger icon appears on smaller screens.
+///   - Opens a collapsible menu containing navigation links, search bar, and profile dropdown (if enabled).
+///   - Global click event listener closes the mobile menu when clicking outside.
+///
+/// - **Dropdown Menu**:
+///   - Profile dropdown toggled on user click.
+///   - Can be styled via dropdown props.
+///
+/// - **Mega Menu**:
+///   - Shown on mouse hover when `show_mega_menu` is true.
+///   - Items appear in a grid-style layout under the "More" button.
+///
+/// - **Search Input**:
+///   - Optional text input for searching.
+///   - Supports local state or controlled component mode via `search_state`.
+///
+/// - **Call-to-Action Button**:
+///   - An optional button beside the menu that links to an external/internal page.
+///
+/// # Examples
+///
+/// ## Basic Navbar
+/// ```rust
+/// use yew::prelude::*;
+/// use navbar::yew::{Menu, MegaMenuItem, Navbar};
+///
+/// #[function_component]
+/// fn App() -> Html {
+///     html! {
+///         <Navbar menus={vec![
+///             Menu { id: 1, link: "/home", name: "Home", icon_start: None, icon_end: None },
+///         ]} />
+///     }
+/// }
+/// ```
+///
+/// ## With Profile Menu and Search
+/// ```rust
+/// use yew::prelude::*;
+/// use navbar::yew::{Menu, MegaMenuItem, Navbar, DropdownItem};
+///
+/// #[function_component]
+/// fn App() -> Html {
+///     html! {
+///         <Navbar
+///             show_search={true}
+///             search_placeholder={"Search..."}
+///             show_profile_menu={true}
+///             profile_button_text={"Profile"}
+///             dropdown_items={vec![
+///                 DropdownItem { id: 1, link: "/settings", label: "Settings", icon: None },
+///                 DropdownItem { id: 2, link: "/logout", label: "Logout", icon: None },
+///             ]}
+///             menus={vec![
+///                 Menu { id: 1, link: "/dashboard", name: "Dashboard", icon_start: None, icon_end: None },
+///             ]}
+///         />
+///     }
+/// }
+/// ```
+///
+/// ## With Mega Menu
+/// ```rust
+/// use yew::prelude::*;
+/// use navbar::yew::{Menu, MegaMenuItem, Navbar};
+///
+/// #[function_component]
+/// fn App() -> Html {
+///     html! {
+///         <Navbar
+///             show_mega_menu={true}
+///             more_button_text={"Explore"}
+///             mega_menu_items={vec![
+///                 MegaMenuItem { title: "Docs", description: "Learn more about our APIs", link: "/docs" },
+///                 MegaMenuItem { title: "Blog", description: "See what we're up to", link: "/blog" },
+///             ]}
+///             menus={vec![
+///                 Menu { id: 1, link: "/platform", name: "Platform", icon_start: None, icon_end: None },
+///             ]}
+///         />
+///     }
+/// }
+/// ```
+///
+/// # Notes
+/// - The component uses `use_state` for responsiveness and open/close behaviors.
+/// - Subcomponents include `NavbarMenu`, `MegaMenu`, `ProfileMenu`, `MobileMenu`, and `NavbarToggle`.
+/// - This component is customizable and works well with Tailwind CSS or other utility-first CSS frameworks.
+///
+/// # See Also
+/// - [MDN `<nav>` Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/nav)
 #[function_component(Navbar)]
 pub fn navbar(props: &NavbarProps) -> Html {
     let is_mobile = use_state(|| {
